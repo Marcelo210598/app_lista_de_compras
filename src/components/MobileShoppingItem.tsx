@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Star, Trash2, Plus, Minus } from 'lucide-react'
 import { useHapticFeedback } from '../hooks/useMobileFeatures'
 

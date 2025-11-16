@@ -1,11 +1,9 @@
 import { useState, useMemo } from 'react';
-import { ShoppingCart, Search, Moon, Sun, Star, Plus, Minus, Trash2 } from 'lucide-react';
+import { ShoppingCart, Search, Moon, Sun } from 'lucide-react';
 import { AddItemForm } from './components/AddItemForm';
 import { ShoppingList } from './components/ShoppingList';
 import { FilterBar } from './components/FilterBar';
 import { useShoppingStore } from './store/shoppingStore';
-import { useHapticFeedback } from './hooks/useMobileFeatures';
-import MobileShoppingItem from './components/MobileShoppingItem';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
