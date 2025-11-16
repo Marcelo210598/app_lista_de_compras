@@ -64,7 +64,7 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${
+    <div className={`min-h-screen transition-colors duration-300 mobile-premium-app ${
       darkMode ? 'bg-gradient-to-br from-blue-900 to-blue-800 text-white' : 'bg-gradient-to-br from-blue-50 to-blue-100 text-gray-900'
     }`}>
       <div className="container mx-auto px-4 py-4 max-w-md min-h-screen flex flex-col">
