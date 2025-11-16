@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import type { ShoppingItem, Category } from '../types';
 
 interface ShoppingStore {
@@ -28,7 +29,9 @@ const defaultCategories: Category[] = [
   { id: '8', name: 'Outros', color: 'bg-gray-500' },
 ];
 
-export const useShoppingStore = create<ShoppingStore>((set) => ({
+export const useShoppingStore = create<ShoppingStore>()(
+  persist(
+    (set) => ({
   items: [],
   categories: defaultCategories,
   filter: 'all',
@@ -68,4 +71,9 @@ export const useShoppingStore = create<ShoppingStore>((set) => ({
   addCategory: (category) => set((state) => ({
     categories: [...state.categories, { ...category, id: Date.now().toString() }],
   })),
-}));
+}),
+    {
+      name: 'shopping-storage', // nome do localStorage key
+    }
+  )
+);

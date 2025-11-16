@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { ShoppingCart, Search, Moon, Sun } from 'lucide-react';
+import { ShoppingCart, Search, Moon, Sun, Save } from 'lucide-react';
 import { AddItemForm } from './components/AddItemForm';
 import { ShoppingList } from './components/ShoppingList';
 import { FilterBar } from './components/FilterBar';
@@ -57,6 +57,10 @@ function App() {
           <p className="text-gray-600 dark:text-gray-400">
             Organize suas compras de forma simples e eficiente
           </p>
+          <div className="flex items-center justify-center gap-2 mt-2 text-sm text-green-600 dark:text-green-400">
+            <Save className="w-4 h-4" />
+            <span>Dados salvos automaticamente</span>
+          </div>
         </div>
 
         {/* Search Bar */}
