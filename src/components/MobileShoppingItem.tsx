@@ -9,23 +9,21 @@ interface MobileShoppingItemProps {
     id: string
     name: string
     category: string
-    emoji: string
+    emoji?: string
     quantity: number
     completed: boolean
     favorited?: boolean
   }
-  onToggle: (id: string) => void
-  onDelete: (id: string) => void
-  onUpdateQuantity: (id: string, quantity: number) => void
-  onToggleFavorite: (id: string) => void
+  onToggle: () => void
+  onDelete: () => void
+  onUpdateQuantity: (quantity: number) => void
 }
 
 export default function MobileShoppingItem({ 
   item, 
   onToggle, 
   onDelete, 
-  onUpdateQuantity,
-  onToggleFavorite
+  onUpdateQuantity
 }: MobileShoppingItemProps) {
   const [showActions, setShowActions] = useState(false)
   const { triggerHaptic } = useHapticFeedback()
@@ -49,7 +47,7 @@ export default function MobileShoppingItem({
           triggerHaptic('light')
         }
       } else if (Math.abs(deltaX) < 30 && deltaTime < 200) {
-        onToggle(item.id)
+        onToggle()
         triggerHaptic('light')
       }
 
@@ -65,7 +63,7 @@ export default function MobileShoppingItem({
       <div className={`absolute right-0 top-0 h-full flex transition-transform duration-300 ${showActions ? 'translate-x-0' : 'translate-x-full'}`}>
         <button
           onClick={() => {
-            onToggleFavorite(item.id)
+            onToggle()
             setShowActions(false)
             triggerHaptic('medium')
           }}
@@ -77,7 +75,7 @@ export default function MobileShoppingItem({
         </button>
         <button
           onClick={() => {
-            onDelete(item.id)
+            onDelete()
             setShowActions(false)
             triggerHaptic('heavy')
           }}
@@ -99,7 +97,7 @@ export default function MobileShoppingItem({
             <button
               onClick={(e) => {
                 e.stopPropagation()
-                onToggle(item.id)
+                onToggle()
                 triggerHaptic('light')
               }}
               className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all ${
@@ -113,7 +111,7 @@ export default function MobileShoppingItem({
             
             <div className="flex-1">
               <div className="flex items-center space-x-3">
-                <span className="text-2xl">{item.emoji}</span>
+                <span className="text-2xl">{item.emoji || '📦'}</span>
                 <div>
                   <div className={`font-semibold ${item.completed ? 'line-through text-gray-500' : 'text-gray-800'}`}>
                     {item.name}
@@ -130,7 +128,7 @@ export default function MobileShoppingItem({
               onClick={(e) => {
                 e.stopPropagation()
                 if (item.quantity > 1) {
-                  onUpdateQuantity(item.id, item.quantity - 1)
+                  onUpdateQuantity(item.quantity - 1)
                   triggerHaptic('light')
                 }
               }}
@@ -143,7 +141,7 @@ export default function MobileShoppingItem({
             <button
               onClick={(e) => {
                 e.stopPropagation()
-                onUpdateQuantity(item.id, item.quantity + 1)
+                onUpdateQuantity(item.quantity + 1)
                 triggerHaptic('light')
               }}
               className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold active:bg-blue-700 transition-colors"
