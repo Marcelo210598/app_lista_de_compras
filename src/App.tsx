@@ -77,7 +77,7 @@ function App() {
                 <ShoppingCart className="w-8 h-8 text-white" />
               </div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent dark:text-white">
-                Lista de Compras
+                🛒 Lista de Compras Premium
               </h1>
             </div>
             <button
